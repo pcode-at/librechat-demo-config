@@ -49,11 +49,4 @@ endpoints:
       titleMethod: 'completion'
       titleModel: 'Mistral-Large-3'
       summarize: false
-      summaryModel: 'Mistral-Large-3'
-      forcePrompt: false
       modelDisplayLabel: 'Mistral'
-      dropParams:
-        - 'stop'
-        - 'user'
-        - 'frequency_penalty'
-        - 'presence_penalty'
