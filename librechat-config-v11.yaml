@@ -18,14 +18,6 @@ registration:
     - 'google'
     - 'openid'
 
-# PDF-/Bild-OCR: Azure AI Foundry – Mistral Document AI (Deployment: mistral-document-ai-2512).
-# AZURE_OCR_BASEURL z. B.: https://<dein-projekt>.inference.ai.azure.com/openai/deployments/mistral-document-ai-2512
-ocr:
-  strategy: azure_mistral_ocr
-  apiKey: '${AZURE_API_KEY}'
-  baseURL: '${AZURE_OCR_BASEURL}'
-  mistralModel: mistral-document-ai-2512
-
 mcpServers:
   Time:
     type: stdio
