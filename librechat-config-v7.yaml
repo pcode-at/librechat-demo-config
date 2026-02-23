@@ -50,3 +50,6 @@ endpoints:
       titleModel: 'Mistral-Large-3'
       summarize: false
       modelDisplayLabel: 'Mistral'
+      # Azure Mistral lehnt zusätzliche Body-Parameter ab (422 extra_forbidden)
+      dropParams:
+        - 'user'
