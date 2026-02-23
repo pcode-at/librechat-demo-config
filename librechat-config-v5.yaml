@@ -1,0 +1,59 @@
+version: 1.2.4
+
+cache: true
+
+interface:
+  privacyPolicy:
+    externalUrl: 'https://librechat.ai/privacy-policy'
+    openNewTab: true
+  termsOfService:
+    externalUrl: 'https://librechat.ai/tos'
+    openNewTab: true
+
+registration:
+  socialLogins:
+    - 'discord'
+    - 'facebook'
+    - 'github'
+    - 'google'
+    - 'openid'
+
+# PDF-/Bild-OCR: Azure AI Foundry – Mistral Document AI (Deployment: mistral-document-ai-2512).
+# AZURE_OCR_BASEURL z. B.: https://<dein-projekt>.inference.ai.azure.com/openai/deployments/mistral-document-ai-2512
+ocr:
+  strategy: azure_mistral_ocr
+  apiKey: '${AZURE_API_KEY}'
+  baseURL: '${AZURE_OCR_BASEURL}'
+  mistralModel: mistral-document-ai-2512
+
+mcpServers:
+  Time:
+    type: stdio
+    command: uvx
+    args:
+      - mcp-server-time
+    startup: false
+
+endpoints:
+  custom:
+    # Mistral via Azure AI Foundry (nur Deployment: Mistral-Large-3)
+    # AZURE_MISTRAL_BASEURL z. B.: https://<dein-projekt>.inference.ai.azure.com/openai/v1
+    - name: 'Mistral'
+      apiKey: '${AZURE_API_KEY}'
+      baseURL: '${AZURE_MISTRAL_BASEURL}'
+      models:
+        default:
+          - Mistral-Large-3
+        fetch: false
+      titleConvo: true
+      titleMethod: 'completion'
+      titleModel: 'Mistral-Large-3'
+      summarize: false
+      summaryModel: 'Mistral-Large-3'
+      forcePrompt: false
+      modelDisplayLabel: 'Mistral'
+      dropParams:
+        - 'stop'
+        - 'user'
+        - 'frequency_penalty'
+        - 'presence_penalty'
