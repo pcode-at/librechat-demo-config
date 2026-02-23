@@ -18,14 +18,13 @@ registration:
     - 'google'
     - 'openid'
 
-# PDF-/Bild-OCR: Hochgeladene PDFs/Bilder werden per Mistral OCR API ausgelesen.
-# Ohne diese Sektion wird bei Uploads kein Mistral-OCR aufgerufen.
-# Siehe: https://docs.mistral.ai/api/endpoint/ocr
+# PDF-/Bild-OCR: Azure AI Foundry – Mistral Document AI (Deployment: mistral-document-ai-2512).
+# AZURE_OCR_BASEURL z. B.: https://<dein-projekt>.inference.ai.azure.com/openai/deployments/mistral-document-ai-2512
 ocr:
-  strategy: mistral_ocr
-  apiKey: '${MISTRAL_API_KEY}'
-  baseURL: 'https://api.mistral.ai/v1'
-  mistralModel: mistral-ocr-latest
+  strategy: azure_mistral_ocr
+  apiKey: '${AZURE_API_KEY}'
+  baseURL: '${AZURE_OCR_BASEURL}'
+  mistralModel: mistral-document-ai-2512
 
 mcpServers:
   Time:
@@ -110,6 +109,3 @@ endpoints:
         - 'user'
         - 'frequency_penalty'
         - 'presence_penalty'
-      # Mistral Chat API lehnt Nachrichten mit "name"-Feld ab (422). Entfernt vor dem Senden.
-      dropMessageFields:
-        - 'name'
