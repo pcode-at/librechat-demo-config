@@ -47,5 +47,7 @@ endpoints:
         apiKey: '${AZURE_API_KEY}'
         baseURL: '${AZURE_MISTRAL_BASEURL}'
         serverless: true
+        # Azure AI Foundry/Mistral lehnt "user" im Request-Body ab (422 extra_forbidden)
+        dropParams: ['user']
         models:
           Mistral-Large-3: true
