@@ -35,26 +35,17 @@ mcpServers:
     startup: false
 
 endpoints:
-  custom:
-    # Mistral via Azure AI Foundry (nur Deployment: Mistral-Large-3)
-    # AZURE_MISTRAL_BASEURL z. B.: https://<dein-projekt>.inference.ai.azure.com/openai/v1
-    - name: 'Mistral'
-      apiKey: '${AZURE_API_KEY}'
-      baseURL: '${AZURE_MISTRAL_BASEURL}'
-      models:
-        default:
-          - Mistral-Large-3
-        fetch: false
-      titleConvo: true
-      titleMethod: 'completion'
-      titleModel: 'Mistral-Large-3'
-      summarize: false
-      modelDisplayLabel: 'Mistral'
-      # Azure Mistral lehnt zusätzliche Body-/Nachrichten-Felder ab (422)
-      dropParams:
-        - 'user'
-        - 'stop'
-        - 'frequency_penalty'
-        - 'presence_penalty'
-      dropMessageFields:
-        - 'name'
+  azureOpenAI:
+    titleConvo: true
+    titleMethod: 'completion'
+    titleModel: 'Mistral-Large-3'
+    summarize: false
+    groups:
+      # Mistral via Azure AI Foundry (Serverless, Deployment: Mistral-Large-3)
+      # AZURE_MISTRAL_BASEURL z. B.: https://<dein-projekt>.inference.ai.azure.com/openai/v1
+      - group: mistral-foundry
+        apiKey: '${AZURE_API_KEY}'
+        baseURL: '${AZURE_MISTRAL_BASEURL}'
+        serverless: true
+        models:
+          Mistral-Large-3: true
