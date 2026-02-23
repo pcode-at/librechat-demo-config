@@ -110,3 +110,6 @@ endpoints:
         - 'user'
         - 'frequency_penalty'
         - 'presence_penalty'
+      # Mistral Chat API lehnt Nachrichten mit "name"-Feld ab (422). Entfernt vor dem Senden.
+      dropMessageFields:
+        - 'name'
