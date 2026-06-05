@@ -3,4 +3,4 @@ cache: false
 
 mcpSettings:
   allowedDomains:
-    - 'http://mastra:4111'
+    - '${MASTRA_API_BASE_URL}'
