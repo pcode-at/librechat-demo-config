@@ -2,5 +2,4 @@ version: 1.3.11
 cache: false
 
 mcpSettings:
-  allowedDomains:
-    - '${MASTRA_API_BASE_URL}'
+  allowedDomains: '${MCP_ALLOWED_DOMAINS}'
